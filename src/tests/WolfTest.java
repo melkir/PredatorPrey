@@ -1,5 +1,3 @@
-package tests;
-
 import agents.AgentType;
 import agents.Wolf;
 import org.junit.jupiter.api.Test;
