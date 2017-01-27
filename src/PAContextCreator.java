@@ -16,21 +16,47 @@ import repast.simphony.valueLayer.GridValueLayer;
 
 public class PAContextCreator implements ContextBuilder<AbstractAgent> {
 
+    /**
+     * Builds and returns a context. Building a context consists of filling it with
+     * agents, adding projects and so forth. When this is called for the master context
+     * the system will pass in a created context based on information given in the
+     * model.score file. When called for subcontexts, each subcontext that was added
+     * when the master context was built will be passed in.
+     * @param context
+     * @return the build context
+     */
     @Override
     public Context build(Context<AbstractAgent> context) {
-        int xdim = 50, ydim = 50; // dimension of the physical space
+        // dimension of the physical space
+        int xdim = 50, ydim = 50;
 
+        // Create a new 2D grid to model the discrete patches of grass. The inputs to the
+        // GridFactory include the grid name, the context in which to place the grid,
+        // and the grid parameters.  Grid parameters include the border specification,
+        // random adder for populating the grid with agents, boolean for multiple occupancy,
+        // and the dimensions of the grid.
         GridFactoryFinder.createGridFactory(null).createGrid(
-                Constants.PROJECTION_GRID, context,
-                new GridBuilderParameters<>(new repast.simphony.space.grid.WrapAroundBorders(),
-                new RandomGridAdder<>(), true, xdim, ydim));
+            Constants.PROJECTION_GRID, context,
+            new GridBuilderParameters<>(new repast.simphony.space.grid.WrapAroundBorders(),
+                new RandomGridAdder<>(), true, xdim, ydim)
+        );
 
+        // Create a new 2D continuous space to model the physical space on which the sheep
+        // and wolves will move. The inputs to the Space Factory include the space name,
+        // the context in which to place the space, border specification,
+        // random adder for populating the grid with agents,
+        // and the dimensions of the grid.
         ContinuousSpaceFactoryFinder.createContinuousSpaceFactory(null).createContinuousSpace(
-                Constants.PROJECTION_SPACE, context, new RandomCartesianAdder<>(),
-                new repast.simphony.space.continuous.WrapAroundBorders(), xdim, ydim, 1);
+            Constants.PROJECTION_SPACE, context, new RandomCartesianAdder<>(),
+            new repast.simphony.space.continuous.WrapAroundBorders(), xdim, ydim, 1
+        );
 
+        // Create a new 2D value layer to store the state of the grass grid. This is
+        // only used for visualization since it's faster to draw the value layer
+        // in 2D displays compared with rendering each grass patch as an agent.
         GridValueLayer valueLayer = new GridValueLayer(Constants.VALUE_LAYER_NAME, true,
-                new repast.simphony.space.grid.WrapAroundBorders(), xdim, ydim);
+            new repast.simphony.space.grid.WrapAroundBorders(), xdim, ydim
+        );
 
         // retrieve the number of wolves and sheep from the parameters
         Parameters params = RunEnvironment.getInstance().getParameters();
