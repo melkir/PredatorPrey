@@ -60,8 +60,8 @@ public class PAContextCreator implements ContextBuilder<AbstractAgent> {
 
         // retrieve the number of wolves and sheep from the parameters
         Parameters params = RunEnvironment.getInstance().getParameters();
-        int numWolves = (Integer) params.getValue(Constants.PARAM_NG_WOLVES_INIT);
-        int numSheep = (Integer) params.getValue(Constants.PARAM_NB_SHEEP_INIT);
+        int numWolves = (Integer) params.getValue(Constants.PARAM_WOLF_INIT_POP);
+        int numSheep = (Integer) params.getValue(Constants.PARAM_SHEEP_INIT_POP);
 
         // add wolves, sheep and grass agents to the context
         for (int i = 0; i < numWolves; i++) context.add(new Wolf());
