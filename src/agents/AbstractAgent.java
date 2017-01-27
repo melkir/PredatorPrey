@@ -1,5 +1,6 @@
 package agents;
 
+import config.Constants;
 import repast.simphony.annotate.AgentAnnot;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunEnvironment;
@@ -11,22 +12,17 @@ import repast.simphony.util.ContextUtils;
 
 @AgentAnnot(displayName = "Agent")
 public abstract class AbstractAgent {
-
-    public static final String PROJECTION_GRID = "Simple Grid";
-    public static final String PROJECTION_SPACE = "Continuous Space";
     private double energy;
     private double direction;
 
     @ScheduledMethod(start = 1, interval = 1)
     public abstract void step();
 
-    public abstract AgentType getType();
-
     public void move() {
         // retrieve the context, the grid and the continuous space of the agent
         Context context = ContextUtils.getContext(this);
-        Grid grid = (Grid) context.getProjection(PROJECTION_GRID);
-        ContinuousSpace space = (ContinuousSpace) context.getProjection(PROJECTION_SPACE);
+        Grid grid = (Grid) context.getProjection(Constants.PROJECTION_GRID);
+        ContinuousSpace space = (ContinuousSpace) context.getProjection(Constants.PROJECTION_SPACE);
 
         // get the location of the agent on the continuous space
         NdPoint point = space.getLocation(this);
@@ -44,7 +40,7 @@ public abstract class AbstractAgent {
     }
 
     /** Kill the agent */
-    public void die() {
+    void die() {
         Context context = ContextUtils.getContext(this);
         // remove the agent from the context if the context is not empty
         if (context.size() > 1) context.remove(this);
@@ -56,15 +52,11 @@ public abstract class AbstractAgent {
         return energy;
     }
 
-    public void setEnergy(double energy) {
+    void setEnergy(double energy) {
         this.energy = energy;
     }
 
-    public double getDirection() {
-        return direction;
-    }
-
-    public void setDirection(double direction) {
+    void setDirection(double direction) {
         this.direction = direction;
     }
 

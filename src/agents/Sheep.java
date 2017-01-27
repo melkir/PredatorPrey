@@ -1,5 +1,6 @@
 package agents;
 
+import config.Constants;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.parameter.Parameters;
@@ -12,9 +13,8 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class Sheep extends AbstractAgent {
-    private static final String PARAM_SHEEP_GAIN_FOOD = "sheep_gain_food";
-    private static final String PARAM_SHEEP_REPRODUCE = "sheep_reproduce";
-    private double gain, rate;
+    private double gain;
+    private final double rate;
 
     public Sheep() {
         // set a random energy and direction
@@ -22,8 +22,8 @@ public class Sheep extends AbstractAgent {
         this.setDirection(Math.random() * 360);
         // retrieve the sheep food gain and reproduce rate from the parameters
         Parameters params = RunEnvironment.getInstance().getParameters();
-        this.gain = (Double) params.getValue(PARAM_SHEEP_GAIN_FOOD);
-        this.rate = (Double) params.getValue(PARAM_SHEEP_REPRODUCE);
+        this.gain = (Double) params.getValue(Constants.PARAM_SHEEP_GAIN_FOOD);
+        this.rate = (Double) params.getValue(Constants.PARAM_SHEEP_REPRODUCE);
     }
 
     public Sheep(double energy) {
@@ -36,7 +36,7 @@ public class Sheep extends AbstractAgent {
         move();
         // retrieve the grid from the context and the sheep position
         Context context = ContextUtils.getContext(this);
-        Grid grid = (Grid) context.getProjection(AbstractAgent.PROJECTION_GRID);
+        Grid grid = (Grid) context.getProjection(Constants.PROJECTION_GRID);
         GridPoint sheepCoords = grid.getLocation(this);
         // search for a grass on the trajectory of the sheep
         Iterable iterable = grid.getObjectsAt(sheepCoords.getX(), sheepCoords.getY());
@@ -54,11 +54,6 @@ public class Sheep extends AbstractAgent {
             this.setEnergy(halfEnergy);
             context.add(new Sheep(halfEnergy));
         }
-    }
-
-    @Override
-    public AgentType getType() {
-        return AgentType.Sheep;
     }
 
 }

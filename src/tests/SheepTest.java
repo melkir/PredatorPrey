@@ -1,15 +1,9 @@
-import agents.AgentType;
 import agents.Sheep;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SheepTest {
-
-    @Test
-    void getType() {
-        assertEquals(AgentType.Sheep, new Sheep().getType());
-    }
 
     @Test
     void move() {

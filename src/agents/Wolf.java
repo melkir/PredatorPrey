@@ -1,5 +1,6 @@
 package agents;
 
+import config.Constants;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.parameter.Parameters;
@@ -12,9 +13,8 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class Wolf extends AbstractAgent {
-    private static final String PARAM_WOLF_GAIN_FOOD = "wolf_gain_food";
-    private static final String PARAM_WOLF_REPRODUCE = "wolf_reproduce";
-    private double gain, rate;
+    private double gain;
+    private final double rate;
 
     public Wolf() {
         // set a random energy and direction
@@ -22,8 +22,8 @@ public class Wolf extends AbstractAgent {
         this.setDirection(Math.random() * 360);
         // retrieve the wolf food gain and reproduce rate from the parameters
         Parameters params = RunEnvironment.getInstance().getParameters();
-        this.gain = (Double) params.getValue(PARAM_WOLF_GAIN_FOOD);
-        this.rate = (Double) params.getValue(PARAM_WOLF_REPRODUCE);
+        this.gain = (Double) params.getValue(Constants.PARAM_WOLF_GAIN_FOOD);
+        this.rate = (Double) params.getValue(Constants.PARAM_WOLF_REPRODUCE);
     }
 
     public Wolf(double energy) {
@@ -36,7 +36,7 @@ public class Wolf extends AbstractAgent {
         move();
         // retrieve the grid from the context and the wolf position
         Context context = ContextUtils.getContext(this);
-        Grid grid = (Grid) context.getProjection(AbstractAgent.PROJECTION_GRID);
+        Grid grid = (Grid) context.getProjection(Constants.PROJECTION_GRID);
         GridPoint wolfCoords = grid.getLocation(this);
         // search for a sheep on the trajectory of the wolf
         Iterable iterable = grid.getObjectsAt(wolfCoords.getX(), wolfCoords.getY());
@@ -54,11 +54,6 @@ public class Wolf extends AbstractAgent {
             this.setEnergy(halfEnergy);
             context.add(new Wolf(halfEnergy));
         }
-    }
-
-    @Override
-    public AgentType getType() {
-        return AgentType.Wolf;
     }
 
 }

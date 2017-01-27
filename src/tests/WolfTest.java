@@ -1,15 +1,9 @@
-import agents.AgentType;
 import agents.Wolf;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WolfTest {
-
-    @Test
-    void getType() {
-        assertEquals(AgentType.Wolf, new Wolf().getType());
-    }
 
     @Test
     void move() {
