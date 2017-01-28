@@ -35,10 +35,11 @@ public class PAContextCreator implements ContextBuilder<AbstractAgent> {
         // and the grid parameters.  Grid parameters include the border specification,
         // random adder for populating the grid with agents, boolean for multiple occupancy,
         // and the dimensions of the grid.
+        
         GridFactoryFinder.createGridFactory(null).createGrid(
             Constants.PROJECTION_GRID, context,
-            new GridBuilderParameters<>(new repast.simphony.space.grid.WrapAroundBorders(),
-                new RandomGridAdder<>(), true, xdim, ydim)
+            new GridBuilderParameters<AbstractAgent>(new repast.simphony.space.grid.WrapAroundBorders(),
+                new RandomGridAdder<AbstractAgent>(), true, xdim, ydim)
         );
 
         // Create a new 2D continuous space to model the physical space on which the sheep

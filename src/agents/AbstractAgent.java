@@ -15,7 +15,7 @@ public abstract class AbstractAgent {
     private double energy;
     private double direction;
 
-    @ScheduledMethod(start = 1, interval = 1)
+    @ScheduledMethod(start = 1, interval = 200)
     public abstract void step();
 
     public void move() {
@@ -34,9 +34,6 @@ public abstract class AbstractAgent {
         space.moveByVector(this, 1, Math.toRadians(direction), 0, 0);
         // move the agent to its new position on the grid
         grid.moveTo(this, (int) point.getX(), (int) point.getY());
-
-        // decrement the energy and die if the agent have no more energy
-        if (--this.energy <= 0) die();
     }
 
     /** Kill the agent */

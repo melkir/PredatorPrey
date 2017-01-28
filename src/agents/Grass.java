@@ -3,6 +3,7 @@ package agents;
 import config.Constants;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.parameter.Parameters;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.util.ContextUtils;
@@ -11,7 +12,6 @@ import repast.simphony.valueLayer.GridValueLayer;
 public class Grass extends AbstractAgent {
     private static final int ALIVE = 1, DEAD = 0;
 
-    private final GridValueLayer valueLayer;
     private final int regrowTime;
     private int countdown; // countdown timer for grass to regrow
 
@@ -19,7 +19,7 @@ public class Grass extends AbstractAgent {
 
     public Grass(Context context, int x, int y) {
         // retrieve the regrow time from the parameters
-        repast.simphony.parameter.Parameters params = RunEnvironment.getInstance().getParameters();
+        Parameters params = RunEnvironment.getInstance().getParameters();
         this.regrowTime = (Integer) params.getValue(Constants.PARAM_GRASS_REGROW_TIME);
         // add the grass to the context
         context.add(this);
@@ -30,11 +30,11 @@ public class Grass extends AbstractAgent {
         // set the grass on the grid and on the continuous space
         Grid grid = (Grid) context.getProjection(Constants.PROJECTION_GRID);
         ContinuousSpace space = (ContinuousSpace) context.getProjection(Constants.PROJECTION_SPACE);
-        grid.moveTo(x, y);
+        grid.moveTo(this, x, y);
         space.moveTo(this, x, y, 0);
         // get the grid value layer from the context and set his current state
-        this.valueLayer = (GridValueLayer) context.getValueLayer(Constants.VALUE_LAYER_NAME);
-        this.valueLayer.set(alive ? ALIVE : DEAD, grid.getLocation(this).toIntArray(null));
+        GridValueLayer valueLayer = (GridValueLayer) context.getValueLayer(Constants.VALUE_LAYER_NAME);
+        valueLayer.set(alive ? ALIVE : DEAD, grid.getLocation(this).toIntArray(null));
     }
 
     @Override
@@ -55,7 +55,8 @@ public class Grass extends AbstractAgent {
 
     private void updateValueLayer() {
         Grid grid = (Grid) ContextUtils.getContext(this).getProjection(Constants.PROJECTION_GRID);
-        this.valueLayer.set(alive ? ALIVE : DEAD, grid.getLocation(this).toIntArray(null));
+        GridValueLayer valueLayer = (GridValueLayer)ContextUtils.getContext(this).getValueLayer(Constants.VALUE_LAYER_NAME);
+        valueLayer.set(alive ? ALIVE : DEAD, grid.getLocation(this).toIntArray(null));
     }
 
     /**
@@ -69,7 +70,7 @@ public class Grass extends AbstractAgent {
     /**
      * @return true if the grass is alive
      */
-    boolean isAlive() {
+    public boolean isAlive() {
         return alive;
     }
 

@@ -14,26 +14,34 @@ import java.util.stream.StreamSupport;
 
 public class Sheep extends AbstractAgent {
     private double gain;
-    private final double rate;
+    private double rate;
 
     public Sheep() {
-        // set a random energy and direction
+    	this.initParams();
+    	// set a random energy and direction
         this.setEnergy(Math.random() * 2 * gain);
         this.setDirection(Math.random() * 360);
+    }
+
+    public Sheep(double energy) {
+    	this.initParams();
+    	// set a random energy and direction
+        this.setEnergy(energy);
+        this.setDirection(Math.random() * 360);
+    }
+    
+    private void initParams() {
         // retrieve the sheep food gain and reproduce rate from the parameters
         Parameters params = RunEnvironment.getInstance().getParameters();
         this.gain = (Double) params.getValue(Constants.PARAM_SHEEP_GAIN_FOOD);
         this.rate = (Double) params.getValue(Constants.PARAM_SHEEP_REPRODUCE);
     }
 
-    public Sheep(double energy) {
-        this();
-        this.setEnergy(energy);
-    }
-
     @Override
     public void step() {
         move();
+        // consume energy
+        this.setEnergy(this.getEnergy() - 1);
         // retrieve the grid from the context and the sheep position
         Context context = ContextUtils.getContext(this);
         Grid grid = (Grid) context.getProjection(Constants.PROJECTION_GRID);
@@ -54,6 +62,8 @@ public class Sheep extends AbstractAgent {
             this.setEnergy(halfEnergy);
             context.add(new Sheep(halfEnergy));
         }
+        // decrement the energy and die if the sheep have no more energy
+        if (this.getEnergy() < 0) die();
     }
 
 }

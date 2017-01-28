@@ -1,0 +1,106 @@
+<repast.simphony.visualization.engine.CartesianDisplayDescriptor>
+  <name>3D World</name>
+  <type>3D</type>
+  <styles>
+    <entry>
+      <string>agents.Grass</string>
+      <string>styles.GrassNodeStyle</string>
+    </entry>
+    <entry>
+      <string>agents.Sheep</string>
+      <string>styles.SimpleNodeStyle</string>
+    </entry>
+    <entry>
+      <string>agents.Wolf</string>
+      <string>styles.SimpleNodeStyle</string>
+    </entry>
+  </styles>
+  <editedStyles>
+    <entry>
+      <string>agents.Grass</string>
+      <null/>
+    </entry>
+    <entry>
+      <string>agents.Sheep</string>
+      <null/>
+    </entry>
+    <entry>
+      <string>agents.Wolf</string>
+      <null/>
+    </entry>
+  </editedStyles>
+  <netStyles/>
+  <editedNetStyles/>
+  <frequency>ON_MOVE</frequency>
+  <schedParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>-1185652184</hashCode>
+  </schedParams>
+  <layoutClassName>foo.bar.baz</layoutClassName>
+  <layoutProjection>Continuous Space</layoutProjection>
+  <layoutInterval>0</layoutInterval>
+  <layerOrder>
+    <entry>
+      <string>agents.Grass</string>
+      <int>2</int>
+    </entry>
+    <entry>
+      <string>agents.Sheep</string>
+      <int>1</int>
+    </entry>
+    <entry>
+      <string>agents.Wolf</string>
+      <int>0</int>
+    </entry>
+  </layerOrder>
+  <projections>
+    <repast.simphony.scenario.data.ProjectionData>
+      <id>Continuous Space</id>
+      <attributes/>
+      <type>continuous space</type>
+    </repast.simphony.scenario.data.ProjectionData>
+  </projections>
+  <visualizationProperties class="repast.simphony.visualization.UnitSizeLayoutProperties">
+    <unitSize>0.06</unitSize>
+  </visualizationProperties>
+  <projectionDescriptors>
+    <entry>
+      <string>Continuous Space</string>
+      <repast.simphony.visualization.continuous.ContinuousProjectionDescriptor>
+        <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData"/>
+        <props>
+          <entry>
+            <string>repast.simphony.visualization.continuous.ContinuousDecorator</string>
+            <map>
+              <entry>
+                <string>COLOR</string>
+                <int>-1</int>
+              </entry>
+              <entry>
+                <string>UNIT_SIZE</string>
+                <float>0.06</float>
+              </entry>
+              <entry>
+                <string>SHOW</string>
+                <boolean>true</boolean>
+              </entry>
+            </map>
+          </entry>
+        </props>
+      </repast.simphony.visualization.continuous.ContinuousProjectionDescriptor>
+    </entry>
+  </projectionDescriptors>
+  <props/>
+  <backgroundColor>
+    <red>0</red>
+    <green>0</green>
+    <blue>0</blue>
+    <alpha>255</alpha>
+  </backgroundColor>
+  <valueLayers/>
+</repast.simphony.visualization.engine.CartesianDisplayDescriptor>

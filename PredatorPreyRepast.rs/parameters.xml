@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<parameters>
+
+	<parameter name="randomSeed" displayName="Default Random Seed"
+		type="int" defaultValue="__NULL__" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+
+	<parameter name="sheep_init_population" displayName="Nombre initial (Mouton) "
+		type="int" defaultValue="50" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+
+	<parameter name="wolf_init_population" displayName="Nombre initial (Loup) "
+		type="int" defaultValue="20" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+
+	<parameter name="sheep_gain_food_rate" displayName="Taux d'energie par nourriture (Mouton) "
+		type="double" defaultValue="4.0" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter" />
+
+	<parameter name="wolf_gain_food_rate" displayName="Taux d'energie par nourriture (Loup) "
+		type="double" defaultValue="60.0" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter" />
+
+	<parameter name="sheep_reproduce_rate" displayName="Taux de reproduction (Mouton) "
+		type="double" defaultValue="4.0" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter" />
+
+	<parameter name="wolf_reproduce_rate" displayName="Taux de reproduction (Loup) "
+		type="double" defaultValue="5.0" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter" />
+
+	<parameter name="grass_regrow_time" displayName="Temps de repousse (Herbe) "
+		type="int" defaultValue="200" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+
+</parameters>
+
+
