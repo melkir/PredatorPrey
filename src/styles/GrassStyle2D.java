@@ -8,7 +8,8 @@ import repast.simphony.visualizationOGL2D.ValueLayerStyleOGL;
 public class GrassStyle2D implements ValueLayerStyleOGL {
 
 	protected ValueLayer layer;
-	private Color tan = new Color(205, 133, 63);
+	private Color tan = new Color(141,110,99);
+	private Color grass = new Color(100,221,23);
 
 	public void init(ValueLayer layer) {
 		this.layer = layer;
@@ -25,7 +26,7 @@ public class GrassStyle2D implements ValueLayerStyleOGL {
 		double v = layer.get(coordinates);
 
 		if (v == 1) {
-			return Color.GREEN;
+			return grass;
 		} else {
 			return tan;
 		}

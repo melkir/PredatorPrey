@@ -58,6 +58,7 @@ public class PAContextCreator implements ContextBuilder<AbstractAgent> {
         GridValueLayer valueLayer = new GridValueLayer(Constants.VALUE_LAYER_NAME, true,
             new repast.simphony.space.grid.WrapAroundBorders(), xdim, ydim
         );
+        context.addValueLayer(valueLayer);
 
         // retrieve the number of wolves and sheep from the parameters
         Parameters params = RunEnvironment.getInstance().getParameters();

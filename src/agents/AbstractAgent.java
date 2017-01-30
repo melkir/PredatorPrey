@@ -15,7 +15,7 @@ public abstract class AbstractAgent {
     private double energy;
     private double direction;
 
-    @ScheduledMethod(start = 1, interval = 200)
+    @ScheduledMethod(start = 1, interval = 120)
     public abstract void step();
 
     public void move() {

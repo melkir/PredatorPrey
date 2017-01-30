@@ -1,32 +1,24 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor>
-  <name>3D World</name>
-  <type>3D</type>
+  <name>2D World</name>
+  <type>2D</type>
   <styles>
     <entry>
-      <string>agents.Grass</string>
-      <string>styles.GrassNodeStyle</string>
-    </entry>
-    <entry>
       <string>agents.Sheep</string>
-      <string>repast.simphony.visualization.editedStyle.EditedStyle3D</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
       <string>agents.Wolf</string>
-      <string>repast.simphony.visualization.editedStyle.EditedStyle3D</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
   </styles>
   <editedStyles>
     <entry>
-      <string>agents.Grass</string>
-      <null/>
-    </entry>
-    <entry>
       <string>agents.Sheep</string>
-      <string>agents.Sheep.style_2.xml</string>
+      <string>agents.Sheep.style_1.xml</string>
     </entry>
     <entry>
       <string>agents.Wolf</string>
-      <string>agents.Wolf.style_1.xml</string>
+      <string>agents.Wolf.style_0.xml</string>
     </entry>
   </editedStyles>
   <netStyles/>
@@ -39,16 +31,12 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-413291626</hashCode>
+    <hashCode>-1784929950</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>Continuous Space</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
-    <entry>
-      <string>agents.Grass</string>
-      <int>2</int>
-    </entry>
     <entry>
       <string>agents.Sheep</string>
       <int>1</int>
@@ -66,7 +54,7 @@
     </repast.simphony.scenario.data.ProjectionData>
   </projections>
   <visualizationProperties class="repast.simphony.visualization.UnitSizeLayoutProperties">
-    <unitSize>0.06</unitSize>
+    <unitSize>15.0</unitSize>
   </visualizationProperties>
   <projectionDescriptors>
     <entry>
@@ -79,11 +67,11 @@
             <map>
               <entry>
                 <string>COLOR</string>
-                <int>-1</int>
+                <int>-16777216</int>
               </entry>
               <entry>
                 <string>UNIT_SIZE</string>
-                <float>0.06</float>
+                <float>15.0</float>
               </entry>
               <entry>
                 <string>SHOW</string>
@@ -97,10 +85,13 @@
   </projectionDescriptors>
   <props/>
   <backgroundColor>
-    <red>0</red>
-    <green>0</green>
-    <blue>0</blue>
+    <red>255</red>
+    <green>255</green>
+    <blue>255</blue>
     <alpha>255</alpha>
   </backgroundColor>
-  <valueLayers/>
+  <valueLayerStyleName>styles.GrassStyle2D</valueLayerStyleName>
+  <valueLayers>
+    <string>Grass Field</string>
+  </valueLayers>
 </repast.simphony.visualization.engine.CartesianDisplayDescriptor>

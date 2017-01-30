@@ -19,7 +19,8 @@ import repast.simphony.visualization.visualization3D.style.TaggedBranchGroup;
 
 public class GrassNodeStyle implements Style3D<AbstractAgent> {
 
-	Color tan = new Color(205, 133, 63);
+	private Color tan = new Color(121,85,72);
+	private Color grass = new Color(100,221,23);
 
 	public TaggedBranchGroup getBranchGroup(AbstractAgent agent, TaggedBranchGroup taggedGroup) {
 
@@ -71,9 +72,9 @@ public class GrassNodeStyle implements Style3D<AbstractAgent> {
 
 		Grass grass = (Grass) agent;
 		if (grass.isAlive())
-			AppearanceFactory.setMaterialAppearance(taggedAppearance.getAppearance(), Color.green);
+			AppearanceFactory.setMaterialAppearance(taggedAppearance.getAppearance(), this.grass);
 		else
-			AppearanceFactory.setMaterialAppearance(taggedAppearance.getAppearance(), tan);
+			AppearanceFactory.setMaterialAppearance(taggedAppearance.getAppearance(), this.tan);
 
 		return taggedAppearance;
 
