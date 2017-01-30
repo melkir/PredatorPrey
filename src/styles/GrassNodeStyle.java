@@ -19,68 +19,63 @@ import repast.simphony.visualization.visualization3D.style.TaggedBranchGroup;
 
 public class GrassNodeStyle implements Style3D<AbstractAgent> {
 
-	private Color tan = new Color(121,85,72);
-	private Color grass = new Color(100,221,23);
+    private Color tan = new Color(121, 85, 72);
+    private Color grass = new Color(100, 221, 23);
 
-	public TaggedBranchGroup getBranchGroup(AbstractAgent agent, TaggedBranchGroup taggedGroup) {
+    public TaggedBranchGroup getBranchGroup(AbstractAgent agent, TaggedBranchGroup taggedGroup) {
 
-		if (taggedGroup == null || taggedGroup.getTag() == null) {
-			taggedGroup = new TaggedBranchGroup("DEFAULT");
-			Shape3D cube = ShapeFactory.createCube(.03f, "DEFAULT");
+        if (taggedGroup == null || taggedGroup.getTag() == null) {
+            taggedGroup = new TaggedBranchGroup("DEFAULT");
+            Shape3D cube = ShapeFactory.createCube(.03f, "DEFAULT");
 
-			Transform3D trans = new Transform3D();
-			trans.set(new Vector3f(0, 0, -.05f));
-			trans.setScale(new Vector3d(1, 1, 0.5));
-			TransformGroup grp = new TransformGroup(trans);
+            Transform3D trans = new Transform3D();
+            trans.set(new Vector3f(0, 0, -.05f));
+            trans.setScale(new Vector3d(1, 1, 0.5));
+            TransformGroup grp = new TransformGroup(trans);
 
-			grp.addChild(cube);
-			taggedGroup.getBranchGroup().addChild(grp);
+            grp.addChild(cube);
+            taggedGroup.getBranchGroup().addChild(grp);
 
-			return taggedGroup;
-		}
-		return null;
-	}
+            return taggedGroup;
+        }
+        return null;
+    }
 
-	public float[] getRotation(AbstractAgent o) {
-		return null;
-	}
+    public float[] getRotation(AbstractAgent o) {
+        return null;
+    }
 
-	public String getLabel(AbstractAgent o, String currentLabel) {
-		return null;
-	}
+    public String getLabel(AbstractAgent o, String currentLabel) {
+        return null;
+    }
 
-	public Color getLabelColor(AbstractAgent t, Color currentColor) {
-		return Color.YELLOW;
-	}
+    public Color getLabelColor(AbstractAgent t, Color currentColor) {
+        return Color.YELLOW;
+    }
 
-	public Font getLabelFont(AbstractAgent t, Font currentFont) {
-		return null;
-	}
+    public Font getLabelFont(AbstractAgent t, Font currentFont) {
+        return null;
+    }
 
-	public LabelPosition getLabelPosition(AbstractAgent o, LabelPosition curentPosition) {
-		return LabelPosition.NORTH;
-	}
+    public LabelPosition getLabelPosition(AbstractAgent o, LabelPosition curentPosition) {
+        return LabelPosition.NORTH;
+    }
 
-	public float getLabelOffset(AbstractAgent t) {
-		return .035f;
-	}
+    public float getLabelOffset(AbstractAgent t) {
+        return .035f;
+    }
 
-	public TaggedAppearance getAppearance(AbstractAgent agent, TaggedAppearance taggedAppearance, Object shapeID) {
-		if (taggedAppearance == null) {
-			taggedAppearance = new TaggedAppearance();
-		}
+    public TaggedAppearance getAppearance(AbstractAgent agent, TaggedAppearance taggedAppearance, Object shapeID) {
+        if (taggedAppearance == null) {
+            taggedAppearance = new TaggedAppearance();
+        }
+        Grass grass = (Grass) agent;
+        Color color = grass.isAlive() ? this.grass : this.tan;
+        AppearanceFactory.setMaterialAppearance(taggedAppearance.getAppearance(), color);
+        return taggedAppearance;
+    }
 
-		Grass grass = (Grass) agent;
-		if (grass.isAlive())
-			AppearanceFactory.setMaterialAppearance(taggedAppearance.getAppearance(), this.grass);
-		else
-			AppearanceFactory.setMaterialAppearance(taggedAppearance.getAppearance(), this.tan);
-
-		return taggedAppearance;
-
-	}
-
-	public float[] getScale(AbstractAgent o) {
-		return null;
-	}
+    public float[] getScale(AbstractAgent o) {
+        return null;
+    }
 }
